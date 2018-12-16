@@ -1,7 +1,9 @@
-## Put comments here that give an overall description of what your
-## functions do
+## Functions take a matrix as an argument and returns the inverse of the matrix.
+## If the inverse has been previously computed, it will return the cached result
 
-## Write a short comment describing this function
+## Takes matrix as an argument and returns a list containing the matrix and functions to get
+## and set the matrix and its inverse. If the inverse has been calculated, the list will
+## include the calculated inverse
 
 makeCacheMatrix <- function(x = matrix()) {
         
@@ -19,17 +21,19 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## Takes makeCacheMatrix object as an argument. If the inverse has been previously
+## calculated, will return the cached inverse. If it has not, it will calculate the
+## inverse and store it in the makeCacheMatrix object
 
 cacheSolve <- function(x, ...) {
         
-        i <- x$getinvert() #attempts to retrieve mean from makeVector() object
+        i <- x$getinvert() 
         if(!is.null(i)) {
                 message("getting cached data")
                 return(i)
         }
-        data <- x$get() #gets the vector for the input object
-        i <- solve(data, ...) #calculates the mean, only place where it is executed
-        x$setinvert(i) #set the mean in the input object
-        i #prints mean object
+        data <- x$get() 
+        i <- solve(data, ...)
+        x$setinvert(i)
+        i
 }
